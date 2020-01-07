@@ -17,6 +17,7 @@
         <activity android:name=".Activities.ThxForRegView"></activity>
         <activity android:name=".Activities.DataPrivacy"></activity>
         <activity android:name=".Activities.PersonalData"></activity>
+        <activity android:name=".Activities.AddressData"></activity>
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

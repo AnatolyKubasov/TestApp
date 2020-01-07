@@ -304,7 +304,7 @@ public class NetworkFragment extends Fragment {
                     s = url.toString();
                     u = new URL(s + "/profile");
                     try {
-                        cred.put("gender", gender);
+                        cred.put("gender", Integer.parseInt(gender));
                         cred.put("first_name", firstname);
                         cred.put("surname", lastname);
                         cred.put("birthday", birthday);

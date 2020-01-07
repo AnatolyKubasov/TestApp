@@ -124,7 +124,7 @@ public class RegView extends AppCompatActivity implements RegisterView, Download
         startDownload(1);
 
         Toast.makeText(getApplicationContext(),"Register Success", Toast.LENGTH_LONG).show();
-        startActivity(new Intent(RegView.this, DataPrivacy.class));
+        //startActivity(new Intent(RegView.this, DataPrivacy.class));
 
     }
 
@@ -204,6 +204,63 @@ public class RegView extends AppCompatActivity implements RegisterView, Download
     //Später überarbeiten, andere Lsg falls Zeit da ist
     @Override
     public String getPassword() {
+        return null;
+    }
+
+
+    //Dont need here
+    @Override
+    public String getAccesstoken() {
+        return null;
+    }
+
+    @Override
+    public String getNumber() {
+        return null;
+    }
+
+    @Override
+    public String getZip() {
+        return null;
+    }
+
+    @Override
+    public String getCity() {
+        return null;
+    }
+
+    @Override
+    public String getStreet() {
+        return null;
+    }
+
+    @Override
+    public String getCountry() {
+        return null;
+    }
+
+    @Override
+    public String getGender() {
+        return null;
+    }
+
+    @Override
+    public String getFirstname() {
+        return null;
+    }
+
+    @Override
+    public String getLastname() {
+        return null;
+    }
+
+    @Override
+    public String getBirthday() {
+        return null;
+    }
+
+    @Override
+    public String getPhone() {
         return null;
     }
 

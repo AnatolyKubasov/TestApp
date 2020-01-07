@@ -7,14 +7,15 @@
     android:background="@drawable/gradient">
 
     <LinearLayout
-        android:id="@+id/list_item"
+        android:id="@+id/btnBackPD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:translationY="-150dp"
+        android:translationY="-130dp"
         android:gravity="center_horizontal"
         android:padding="2dp" >
 
         <ImageView
+
             android:layout_width="30dp"
             android:layout_height="40dp"
             android:gravity="center_vertical"
@@ -52,19 +53,6 @@
         android:lineSpacingExtra="10sp"
         android:textSize="16sp" />
 
-
-    <EditText
-        android:id="@+id/etPersonalName"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
-        android:textColorHint="@android:color/white"
-        android:backgroundTint="@android:color/white"
-        android:hint="Name"
-        android:inputType="textPersonName"
-        />
-
     <EditText
         android:id="@+id/etGender"
         android:layout_height="wrap_content"
@@ -80,6 +68,31 @@
 
 
     <EditText
+        android:id="@+id/etPersonalName"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:textColorHint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:hint="Name"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/etPersonalSurName"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:textColorHint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:hint="Last Name"
+        android:inputType="text"
+        />
+
+
+    <EditText
         android:id="@+id/etPersonalBD"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
@@ -87,7 +100,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:hint="yyyy.mm.dd"
-        android:inputType="date"
+        android:inputType="text"
         android:textColorHint="@android:color/white"
         android:backgroundTint="@android:color/white"
         />
@@ -101,7 +114,7 @@
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:hint="Phone"
-        android:inputType="phone"
+        android:inputType="text"
         android:textColorHint="@android:color/white"
         android:backgroundTint="@android:color/white"
         />

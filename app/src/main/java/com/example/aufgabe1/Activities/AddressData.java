@@ -1,35 +1,27 @@
 package com.example.aufgabe1.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.aufgabe1.Model.PresenterImpl;
+import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.aufgabe1.Model.AddrDataPresImpl;
 import com.example.aufgabe1.Network.DownloadCallback;
 import com.example.aufgabe1.Network.NetworkFragment;
-import com.example.aufgabe1.Presenter.LoginPresenter;
-
+import com.example.aufgabe1.Presenter.AddrDataPresenter;
+import com.example.aufgabe1.Presenter.PersDataPresenter;
 import com.example.aufgabe1.R;
-import com.example.aufgabe1.View.LoginView;
+import com.example.aufgabe1.View.AddrDataView;
 
+public class AddressData extends AppCompatActivity implements AddrDataView, DownloadCallback {
 
-
-public class MainActivity extends AppCompatActivity implements LoginView, DownloadCallback {
-
-    public static String ACCESS_TOKEN= "ACCESS_TOKEN";
-    EditText etUserName, etPassword;
-    LoginPresenter mLoginPresenter;
     String accesstoken;
 
     // Keep a reference to the NetworkFragment, which owns the AsyncTask object
@@ -40,17 +32,81 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
     // downloads with consecutive button clicks.
     private boolean downloading = false;
 
+    EditText etStreet, etHausnummer, etZipCode, etCity, etCountry;
+    AddrDataPresenter mAddrDataPresenter;
+
+    Button btnAddressNext;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_address_data);
 
+        mAddrDataPresenter = new AddrDataPresImpl(AddressData.this);
         defineButton();
-        etUserName = findViewById(R.id.etUserName);
-        etPassword = findViewById(R.id.etPassword);
-        mLoginPresenter = new PresenterImpl(MainActivity.this);
+        btnAddressNext= findViewById(R.id.btnAddressNext);
+        etStreet = findViewById(R.id.etStreet);
+        etHausnummer = findViewById(R.id.etHausnummer);
+        etZipCode = findViewById(R.id.etZipCode);
+        etCity = findViewById(R.id.etCity);
+        etCountry = findViewById(R.id.etCountry);
+
+
+        Intent intent = getIntent();
+        accesstoken = intent.getStringExtra(MainActivity.ACCESS_TOKEN);
+
+
         networkFragment = NetworkFragment.getInstance(getSupportFragmentManager(), "https://dev.api.digital-nursing-service.ucura.com/api/v1");
+
+    }
+
+    public void defineButton() {
+        findViewById(R.id.btnAddressNext).setOnClickListener(buttonClickListener);
+
+    }
+
+    public View.OnClickListener buttonClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
+                case R.id.btnPersonalNext:
+                    //String gender = .getText().toString();
+                    String street = etStreet.getText().toString();
+                    String hausnummer = etHausnummer.getText().toString();
+                    String zipCode = etZipCode.getText().toString();
+                    String city = etCity.getText().toString();
+                    String country = etCountry.getText().toString();
+                    mAddrDataPresenter.performAddrData(street, hausnummer, zipCode, city, country);
+
+                    //Intent intent = new Intent(PersonalData.this, AddressData.class);
+                    //intent.putExtra(MainActivity.ACCESS_TOKEN, accesstoken);
+                    //startActivity(new Intent(PersonalData.this, AddressData.class));
+
+                    break;
+                case R.id.btGoToReg:
+                    //mRegisterPresenter.moveToRegisterView();
+                    //moveToRegPage();
+
+                    break;
+            }
+        }
+    };
+
+    @Override
+    public void addrDataValidation() {
+        Toast.makeText(getApplicationContext(),"Register Validation", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void addrDataSuccess() {
+        startDownload(5);
+        Toast.makeText(getApplicationContext(),"Register Success", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void addrDataError() {
+        Toast.makeText(getApplicationContext(),"Register Error", Toast.LENGTH_LONG).show();
     }
 
     private void startDownload(int t) {
@@ -59,52 +115,8 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
             int downloadType = t;
             networkFragment.startDownload(downloadType);
             downloading = true;
+
         }
-    }
-
-    public void defineButton() {
-        findViewById(R.id.tvLogin).setOnClickListener(buttonClickListener);
-        findViewById(R.id.btGoToReg).setOnClickListener(buttonClickListener);
-
-    }
-
-    public View.OnClickListener buttonClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-                case R.id.tvLogin:
-                    String userName = etUserName.getText().toString();
-                    String password = etPassword.getText().toString();
-                    mLoginPresenter.performLogin(userName, password);
-                    break;
-                case R.id.btGoToReg:
-                    //mRegisterPresenter.moveToRegisterView();
-                    moveToRegPage();
-                    break;
-            }
-        }
-    };
-
-    //diese fkt auslagern später
-    public void moveToRegPage(){
-        startActivity(new Intent(MainActivity.this, RegView.class));
-    }
-
-    @Override
-    public void loginValidation() {
-        Toast.makeText(getApplicationContext(),"Please Enter userName and Password", Toast.LENGTH_LONG).show();
-    }
-
-    @Override
-    public void loginSuccess() {
-        startDownload(2);
-        Toast.makeText(getApplicationContext(),"Login Success", Toast.LENGTH_LONG).show();
-        //startActivity(new Intent(MainActivity.this, FirstLoginView.class));
-    }
-
-    @Override
-    public void loginError() {
-        Toast.makeText(getApplicationContext(),"Login Error", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -113,13 +125,11 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
             Toast.makeText(getApplicationContext(), "No result", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "Result : " + result.toString(), Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, FirstLoginView.class);
-            accesstoken = result.toString();
-            String [] parts = accesstoken.split(":");
-            intent.putExtra(this.ACCESS_TOKEN, parts[1]);
-
+            Intent intent = new Intent(AddressData.this, ReadyToStart.class);
+            intent.putExtra(MainActivity.ACCESS_TOKEN, accesstoken);
             startActivity(intent);
         }
+
     }
 
     @Override
@@ -133,7 +143,6 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
 
     @Override
     public void onProgressUpdate(int progressCode, int percentComplete) {
-
         switch(progressCode) {
             // You can add UI behavior for progress updates here.
             case Progress.ERROR:
@@ -152,6 +161,7 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
                 Toast.makeText(getApplicationContext(), "PROCESS_INPUT_STREAM_SUCCESS : " + progressCode, Toast.LENGTH_SHORT).show();
                 break;
         }
+
     }
 
     @Override
@@ -163,9 +173,39 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
     }
 
     @Override
+    public String getNumber() {
+        EditText number= findViewById(R.id.etHausnummer);
+        return number.getText().toString();
+    }
+
+    @Override
+    public String getZip() {
+        EditText zipcode= findViewById(R.id.etZipCode);
+        return zipcode.getText().toString();
+    }
+
+    @Override
+    public String getCity() {
+        EditText city= findViewById(R.id.etCity);
+        return city.getText().toString();
+    }
+
+    @Override
+    public String getStreet() {
+        EditText street= findViewById(R.id.etStreet);
+        return street.getText().toString();
+    }
+
+    @Override
+    public String getCountry() {
+        EditText country= findViewById(R.id.etCountry);
+        return country.getText().toString();
+    }
+
+    //Dont need
+    @Override
     public String getMail() {
-        EditText mail= findViewById(R.id.etUserName);
-        return mail.getText().toString();
+        return null;
     }
 
     @Override
@@ -180,40 +220,11 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
 
     @Override
     public String getPassword() {
-        EditText pw = findViewById(R.id.etPassword);
-        return pw.getText().toString();
+        return null;
     }
 
     @Override
     public String getAccesstoken() {
-        String at = "Bearer " + accesstoken;
-        return at;
-    }
-
-
-    //Don't need here
-    @Override
-    public String getNumber() {
-        return null;
-    }
-
-    @Override
-    public String getZip() {
-        return null;
-    }
-
-    @Override
-    public String getCity() {
-        return null;
-    }
-
-    @Override
-    public String getStreet() {
-        return null;
-    }
-
-    @Override
-    public String getCountry() {
         return null;
     }
 
@@ -241,4 +252,6 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
     public String getPhone() {
         return null;
     }
+
+
 }

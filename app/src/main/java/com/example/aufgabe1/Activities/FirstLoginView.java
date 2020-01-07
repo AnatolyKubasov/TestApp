@@ -39,7 +39,7 @@ public class FirstLoginView extends AppCompatActivity {
                 case R.id.btnCompleteProfile:
                     Intent intent = new Intent(FirstLoginView.this, PersonalData.class);
                     intent.putExtra(MainActivity.ACCESS_TOKEN, accesstoken);
-                    startActivity(new Intent(FirstLoginView.this, PersonalData.class));
+                    startActivity(intent);
                     break;
                 case R.id.btnCGetToKnow:
                     //mRegisterPresenter.moveToRegisterView();
