@@ -142,7 +142,7 @@ public class RegView extends AppCompatActivity implements RegisterView, Download
             Toast.makeText(getApplicationContext(), "No result", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "Result : " + result.toString(), Toast.LENGTH_SHORT).show();
-            //startActivity(new Intent(MainActivity.this, .class));
+            startActivity(new Intent(RegView.this, DataPrivacy.class));
         }
 
     }
