@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:background="@drawable/gradient">
+
+    <LinearLayout
+        android:id="@+id/list_item_insurance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationY="-170dp"
+        android:gravity="center_horizontal"
+        android:padding="2dp" >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:src="@drawable/back_foreground" />
+
+        <TextView
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:lines="1"
+            android:gravity="center_vertical"
+            android:textColor="#FFF"
+            android:text="Back" />
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insurance Data"
+        android:layout_marginTop="-80dp"
+        android:textColor="#FFF"
+        android:textAlignment="center"
+        android:translationY="-40dp"
+        android:textSize="30sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Your insurance details and alss of\ncare will be used to organize the\noptimal care for you"
+        android:textColor="#FFF"
+        android:textAlignment="center"
+        android:translationY="-20dp"
+        android:lineSpacingExtra="10sp"
+        android:textSize="16sp" />
+
+
+    <EditText
+        android:id="@+id/etHealthForC"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:textColorHint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        android:hint="Health insurance fund or cost unit"
+        android:inputType="text"
+        />
+
+    <EditText
+        android:id="@+id/etInsuranceNumber"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Insurance number"
+        android:inputType="number"
+        android:textColorHint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        />
+
+
+    <EditText
+        android:id="@+id/etLevelOfCare"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:hint="Level of care"
+        android:inputType="number"
+        android:textColorHint="@android:color/white"
+        android:backgroundTint="@android:color/white"
+        />
+
+
+
+    <Button
+        android:id="@+id/btnInsuranceNext"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginLeft="25dp"
+        android:padding="12dp"
+        android:textSize="22sp"
+        android:textColor="#888"
+        android:textStyle="bold"
+        android:background="#FFF"
+        android:text="Next"
+        android:gravity="center"
+
+        />
+
+</LinearLayout>
