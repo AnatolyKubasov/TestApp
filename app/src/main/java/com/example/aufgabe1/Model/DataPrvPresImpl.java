@@ -15,8 +15,7 @@ public class DataPrvPresImpl implements DataPrvPresenter {
 
 
     @Override
-    public void checkIfAllChecked() {
-
-
+    public boolean checkedBoxes() {
+        return false;
     }
 }
