@@ -25,6 +25,7 @@ public class FirstLoginView extends AppCompatActivity {
         Intent intent = getIntent();
         accesstoken = intent.getStringExtra(MainActivity.ACCESS_TOKEN);
 
+
     }
 
     public void defineButton() {

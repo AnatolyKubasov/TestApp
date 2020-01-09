@@ -11,7 +11,7 @@
         android:id="@+id/list_item_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:translationY="-170dp"
+        android:translationY="-155dp"
         android:gravity="center_horizontal"
         android:padding="2dp" >
 
@@ -80,7 +80,7 @@
             android:layout_marginRight="25dp"
             android:backgroundTint="@android:color/white"
             android:hint="No."
-            android:inputType="number"
+            android:inputType="text"
             android:textColorHint="@android:color/white" />
 
     </LinearLayout>
@@ -100,7 +100,7 @@
             android:layout_marginRight="25dp"
             android:backgroundTint="@android:color/white"
             android:hint="ZIP Code"
-            android:inputType="number"
+            android:inputType="text"
             android:textColorHint="@android:color/white" />
 
 

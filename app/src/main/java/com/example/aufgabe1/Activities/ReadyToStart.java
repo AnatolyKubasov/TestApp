@@ -38,7 +38,7 @@ public class ReadyToStart extends AppCompatActivity implements RtoSView, Downloa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_address_data);
+        setContentView(R.layout.activity_ready_to_start);
 
 
         mRtoSPresenter = new RtoSPresImpl(ReadyToStart.this);
@@ -94,17 +94,17 @@ public class ReadyToStart extends AppCompatActivity implements RtoSView, Downloa
     }
 
     @Override
-    public String getMail() {
-        return null;
-    }
-
-    @Override
     public String getRegMail() {
         return null;
     }
 
     @Override
     public String getRegPassword() {
+        return null;
+    }
+
+    @Override
+    public String getMail() {
         return null;
     }
 
@@ -167,4 +167,6 @@ public class ReadyToStart extends AppCompatActivity implements RtoSView, Downloa
     public String getPhone() {
         return null;
     }
+
+
 }

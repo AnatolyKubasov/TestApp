@@ -24,6 +24,8 @@ public class AddressData extends AppCompatActivity implements AddrDataView, Down
 
     String accesstoken;
 
+    DownloadCallback mDC;
+
     // Keep a reference to the NetworkFragment, which owns the AsyncTask object
     // that is used to execute network ops.
     private NetworkFragment networkFragment;
@@ -79,9 +81,9 @@ public class AddressData extends AppCompatActivity implements AddrDataView, Down
                     String country = etCountry.getText().toString();
                     mAddrDataPresenter.performAddrData(street, hausnummer, zipCode, city, country);
 
-                    //Intent intent = new Intent(PersonalData.this, AddressData.class);
+                    //Intent intent = new Intent(AddressData.this, ReadyToStart.class);
                     //intent.putExtra(MainActivity.ACCESS_TOKEN, accesstoken);
-                    //startActivity(new Intent(PersonalData.this, AddressData.class));
+                    //startActivity(intent);
 
                     break;
                 case R.id.btGoToReg:
@@ -172,6 +174,9 @@ public class AddressData extends AppCompatActivity implements AddrDataView, Down
         }
     }
 
+
+
+
     @Override
     public String getNumber() {
         EditText number= findViewById(R.id.etHausnummer);
@@ -202,32 +207,6 @@ public class AddressData extends AppCompatActivity implements AddrDataView, Down
         return country.getText().toString();
     }
 
-    //Dont need
-    @Override
-    public String getMail() {
-        return null;
-    }
-
-    @Override
-    public String getRegMail() {
-        return null;
-    }
-
-    @Override
-    public String getRegPassword() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getAccesstoken() {
-        return null;
-    }
-
     @Override
     public String getGender() {
         return null;
@@ -253,5 +232,29 @@ public class AddressData extends AppCompatActivity implements AddrDataView, Down
         return null;
     }
 
+    @Override
+    public String getRegMail() {
+        return null;
+    }
+
+    @Override
+    public String getRegPassword() {
+        return null;
+    }
+
+    @Override
+    public String getMail() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getAccesstoken() {
+        return accesstoken;
+    }
 
 }

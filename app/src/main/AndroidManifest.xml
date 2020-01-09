@@ -11,13 +11,17 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
+        android:debuggable="true"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        tools:ignore="HardcodedDebugMode">
         <activity android:name=".Activities.FirstLoginView"></activity>
         <activity android:name=".Activities.ThxForRegView"></activity>
         <activity android:name=".Activities.DataPrivacy"></activity>
         <activity android:name=".Activities.PersonalData"></activity>
         <activity android:name=".Activities.AddressData"></activity>
+        <activity android:name=".Activities.ReadyToStart"></activity>
+        <activity android:name=".Activities.Dashboard"></activity>
         <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -39,6 +39,7 @@ public class DataPrivacy extends AppCompatActivity implements DataPrvView {
                 case R.id.btnDPaccept:
                     checkedBoxes();
                     dataPrivacyIsChecked();
+
                     break;
                 case R.id.btGoToReg:
                     //mRegisterPresenter.moveToRegisterView();

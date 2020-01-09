@@ -119,6 +119,31 @@ public class InsuranceData extends AppCompatActivity implements InsurDataView, D
     }
 
     @Override
+    public String getRegMail() {
+        return null;
+    }
+
+    @Override
+    public String getRegPassword() {
+        return null;
+    }
+
+    @Override
+    public String getMail() {
+        return null;
+    }
+
+    @Override
+    public String getPassword() {
+        return null;
+    }
+
+    @Override
+    public String getAccesstoken() {
+        return null;
+    }
+
+    @Override
     public String getNumber() {
         return null;
     }
@@ -140,31 +165,6 @@ public class InsuranceData extends AppCompatActivity implements InsurDataView, D
 
     @Override
     public String getCountry() {
-        return null;
-    }
-
-    @Override
-    public String getMail() {
-        return null;
-    }
-
-    @Override
-    public String getRegMail() {
-        return null;
-    }
-
-    @Override
-    public String getRegPassword() {
-        return null;
-    }
-
-    @Override
-    public String getPassword() {
-        return null;
-    }
-
-    @Override
-    public String getAccesstoken() {
         return null;
     }
 
@@ -192,4 +192,6 @@ public class InsuranceData extends AppCompatActivity implements InsurDataView, D
     public String getPhone() {
         return null;
     }
+
+
 }

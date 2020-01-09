@@ -69,11 +69,6 @@ public class Dashboard extends AppCompatActivity implements DashboardView, Downl
     }
 
     @Override
-    public String getMail() {
-        return null;
-    }
-
-    @Override
     public String getRegMail() {
         return null;
     }
@@ -84,13 +79,18 @@ public class Dashboard extends AppCompatActivity implements DashboardView, Downl
     }
 
     @Override
+    public String getMail() {
+        return null;
+    }
+
+    @Override
     public String getPassword() {
         return null;
     }
 
     @Override
     public String getAccesstoken() {
-        return null;
+        return accesstoken;
     }
 
     @Override
@@ -142,4 +142,6 @@ public class Dashboard extends AppCompatActivity implements DashboardView, Downl
     public String getPhone() {
         return null;
     }
+
+
 }

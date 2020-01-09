@@ -6,4 +6,7 @@ public interface RegisterView {
     void registerSuccess();
     void registerError();
 
+    String getRegMail();
+    String getRegPassword();
+
 }

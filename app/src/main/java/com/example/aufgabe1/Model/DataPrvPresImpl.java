@@ -10,9 +10,7 @@ import com.example.aufgabe1.View.RegisterView;
 public class DataPrvPresImpl implements DataPrvPresenter {
 
     DataPrvView mDataPrivacy;
-    //Hier die Checkboxen abfragen rein
-    CheckBox checkBox1, checkBox2;
-
+    public DataPrvPresImpl(DataPrivacy dataPrivacy) {this.mDataPrivacy=dataPrivacy;}
 
     @Override
     public boolean checkedBoxes() {

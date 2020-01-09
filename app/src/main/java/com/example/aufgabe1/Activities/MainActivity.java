@@ -68,6 +68,8 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
 
     }
 
+
+
     public View.OnClickListener buttonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -116,7 +118,10 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
             Intent intent = new Intent(MainActivity.this, FirstLoginView.class);
             accesstoken = result.toString();
             String [] parts = accesstoken.split(":");
-            intent.putExtra(this.ACCESS_TOKEN, parts[1]);
+            String[] newParts = parts[1].split(",");
+            String lastParts = newParts[0].substring(1, newParts[0].length() - 1);
+
+            intent.putExtra(this.ACCESS_TOKEN, lastParts);
 
             startActivity(intent);
         }
@@ -163,12 +168,6 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
     }
 
     @Override
-    public String getMail() {
-        EditText mail= findViewById(R.id.etUserName);
-        return mail.getText().toString();
-    }
-
-    @Override
     public String getRegMail() {
         return null;
     }
@@ -177,6 +176,14 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
     public String getRegPassword() {
         return null;
     }
+
+    @Override
+    public String getMail() {
+        EditText mail= findViewById(R.id.etUserName);
+        return mail.getText().toString();
+    }
+
+
 
     @Override
     public String getPassword() {
@@ -190,8 +197,6 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
         return at;
     }
 
-
-    //Don't need here
     @Override
     public String getNumber() {
         return null;
@@ -241,4 +246,6 @@ public class MainActivity extends AppCompatActivity implements LoginView, Downlo
     public String getPhone() {
         return null;
     }
+
+
 }

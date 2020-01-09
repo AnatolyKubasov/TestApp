@@ -7,9 +7,12 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -38,6 +41,7 @@ public class PersonalData extends AppCompatActivity implements PersDataView, Dow
     PersDataPresenter mPersDataPresenter;
 
     Button btnPersonalNext;
+    CheckBox checkBoxMan, checkBoxWoman;
 
 
     @Override
@@ -47,20 +51,49 @@ public class PersonalData extends AppCompatActivity implements PersDataView, Dow
 
         mPersDataPresenter = new PersDataPresImpl(PersonalData.this);
         defineButton();
+        checking();
         btnPersonalNext= findViewById(R.id.btnPersonalNext);
-        etrGender = findViewById(R.id.etGender);
+        //etrGender = findViewById(R.id.etGender);
+
         etrFirstname = findViewById(R.id.etPersonalName);
         etrLastname = findViewById(R.id.etPersonalSurName);
         etrBirthday = findViewById(R.id.etPersonalBD);
         etrPhone = findViewById(R.id.etPersonalPhone);
 
-
         Intent intent = getIntent();
         accesstoken = intent.getStringExtra(MainActivity.ACCESS_TOKEN);
-
-
         networkFragment = NetworkFragment.getInstance(getSupportFragmentManager(), "https://dev.api.digital-nursing-service.ucura.com/api/v1");
+
+        checkBoxMan = findViewById(R.id.checkBoxMan);
+        checkBoxWoman = findViewById(R.id.checkBoxWoman);
+        checkBoxMan.setChecked(true);
+        checkBoxWoman.setChecked(false);
+        checkBoxMan.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (checkBoxMan.isChecked()) {
+                    checkBoxWoman.setChecked(false);
+                    getGender();
+                }
+            }
+        });
+
+        checkBoxWoman.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (checkBoxWoman.isChecked()) {
+                    checkBoxMan.setChecked(false);
+                    getGender();
+                }
+            }
+        });
     }
+
+    private void checking() {
+
+
+    }
+
 
     public void defineButton() {
         findViewById(R.id.btnPersonalNext).setOnClickListener(buttonClickListener);
@@ -73,7 +106,8 @@ public class PersonalData extends AppCompatActivity implements PersDataView, Dow
             switch (view.getId()) {
                 case R.id.btnPersonalNext:
                     //String gender = .getText().toString();
-                    String gender = etrGender.getText().toString();
+                    //String gender = etrGender.getText().toString();
+                    String gender = getGender();
                     String firstname = etrFirstname.getText().toString();
                     String lastname = etrLastname.getText().toString();
                     String birthday = etrBirthday.getText().toString();
@@ -179,44 +213,6 @@ public class PersonalData extends AppCompatActivity implements PersDataView, Dow
         }
     }
 
-    //NEED
-    @Override
-    public String getGender() {
-        EditText gender= findViewById(R.id.etGender);
-        return gender.getText().toString();
-    }
-
-    @Override
-    public String getFirstname() {
-        EditText firstname= findViewById(R.id.etPersonalName);
-        return firstname.getText().toString();
-    }
-
-    @Override
-    public String getLastname() {
-        EditText lastname= findViewById(R.id.etPersonalSurName);
-        return lastname.getText().toString();
-
-    }
-
-    @Override
-    public String getBirthday() {
-        EditText birthday= findViewById(R.id.etPersonalBD);
-        return birthday.getText().toString();
-    }
-
-    @Override
-    public String getPhone() {
-        EditText phone= findViewById(R.id.etPersonalPhone);
-        return phone.getText().toString();
-    }
-
-    //Dont need
-    @Override
-    public String getMail() {
-        return null;
-    }
-
     @Override
     public String getRegMail() {
         return null;
@@ -228,13 +224,18 @@ public class PersonalData extends AppCompatActivity implements PersDataView, Dow
     }
 
     @Override
+    public String getMail() {
+        return null;
+    }
+
+    @Override
     public String getPassword() {
         return null;
     }
 
     @Override
     public String getAccesstoken() {
-        return null;
+        return accesstoken;
     }
 
     @Override
@@ -263,6 +264,42 @@ public class PersonalData extends AppCompatActivity implements PersDataView, Dow
     }
 
 
+    //NEED
+    @Override
+    public String getGender() {
+
+        String gender = "";
+        if (checkBoxMan.isChecked()) { gender = "0"; }
+        else if (checkBoxWoman.isChecked()) { gender = "1"; }
+        return gender;
+/*        EditText gender= findViewById(R.id.etGender);
+        return gender.getText().toString();*/
+    }
+
+    @Override
+    public String getFirstname() {
+        EditText firstname= findViewById(R.id.etPersonalName);
+        return firstname.getText().toString();
+    }
+
+    @Override
+    public String getLastname() {
+        EditText lastname= findViewById(R.id.etPersonalSurName);
+        return lastname.getText().toString();
+
+    }
+
+    @Override
+    public String getBirthday() {
+        EditText birthday= findViewById(R.id.etPersonalBD);
+        return birthday.getText().toString();
+    }
+
+    @Override
+    public String getPhone() {
+        EditText phone= findViewById(R.id.etPersonalPhone);
+        return phone.getText().toString();
+    }
 
 
 

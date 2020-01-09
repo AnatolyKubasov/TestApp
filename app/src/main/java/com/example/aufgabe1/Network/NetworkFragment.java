@@ -3,10 +3,12 @@ package com.example.aufgabe1.Network;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 //import android.se.omapi.Reader;
 import java.io.OutputStreamWriter;
@@ -15,6 +17,13 @@ import java.io.Reader;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+
+import com.example.aufgabe1.Activities.AddressData;
+import com.example.aufgabe1.Activities.MainActivity;
+import com.example.aufgabe1.Activities.PersonalData;
+import com.example.aufgabe1.Activities.RegView;
+import com.example.aufgabe1.View.AddrDataView;
+import com.example.aufgabe1.View.LoginView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -67,6 +76,8 @@ public class NetworkFragment extends Fragment {
         urlString = getArguments().getString(URL_KEY);
         setRetainInstance(true);
         //...
+
+
     }
 
     @Override
@@ -218,13 +229,20 @@ public class NetworkFragment extends Fragment {
             String result = null;
             String s;
             JSONObject cred   = new JSONObject();
-            String mail = callback.getMail();
+
+            //Registration
+            //RegView mReg = new RegView();
             String regmail = callback.getRegMail();
-            String password = callback.getPassword();
             String regpassword = callback.getRegPassword();
+
+            //Login and Token
+            //MainActivity mLog = new MainActivity();
             String mAccesstoken = callback.getAccesstoken();
+            String mail = callback.getMail();
+            String password = callback.getPassword();
 
             //Address
+
             String number = callback.getNumber();
             String street = callback.getStreet();
             String zip = callback.getZip();
@@ -232,6 +250,7 @@ public class NetworkFragment extends Fragment {
             String city = callback.getCity();
 
             //Personal data
+
             String gender = callback.getGender();
             String firstname = callback.getFirstname();
             String lastname = callback.getLastname();
@@ -293,7 +312,7 @@ public class NetworkFragment extends Fragment {
                         cred.put("zip", zip);
                         cred.put("city", city);
                         cred.put("country", country);
-                        connection.setRequestProperty("Authorization", mAccesstoken);
+                        //connection.setRequestProperty("Authorization", mAccesstoken);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -309,7 +328,7 @@ public class NetworkFragment extends Fragment {
                         cred.put("surname", lastname);
                         cred.put("birthday", birthday);
                         cred.put("phone", phone);
-                        connection.setRequestProperty("Authorization", mAccesstoken);
+                        //connection.setRequestProperty("Authorization", mAccesstoken);
 
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -326,8 +345,14 @@ public class NetworkFragment extends Fragment {
                 connection.setReadTimeout(3000);
                 // Timeout for connection.connect() arbitrarily set to 3000ms.
                 connection.setConnectTimeout(3000);
-                connection.setRequestProperty("Content-Type", "application/json");
-                connection.setRequestProperty("Accept", "application/json");
+                if(downloadType == 5 || downloadType == 6){
+                    connection.setRequestProperty("Content-Type", "application/json");
+                    connection.setRequestProperty("Authorization", mAccesstoken);
+                }else{
+                    connection.setRequestProperty("Content-Type", "application/json");
+                    connection.setRequestProperty("Accept", "application/json");
+                }
+
                 if (downloadType == 1 || downloadType == 2) {
                     connection.setRequestMethod("POST");
                 } else if (downloadType == 3) {
@@ -335,7 +360,9 @@ public class NetworkFragment extends Fragment {
                 } else if (downloadType == 4) {
                     connection.setRequestMethod("DEL");
                 } else if (downloadType == 5){
-                    connection.setRequestMethod("GET");
+                    connection.setRequestMethod("POST");
+                } else if(downloadType == 6){
+                    connection.setRequestMethod("PUT");
                 }
                 // Already true by default but setting just in case; needs to be true since this request
                 // is carrying an input (response) body.

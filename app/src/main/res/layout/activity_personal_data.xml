@@ -10,7 +10,7 @@
         android:id="@+id/btnBackPD"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:translationY="-130dp"
+        android:translationY="-120dp"
         android:gravity="center_horizontal"
         android:padding="2dp" >
 
@@ -33,11 +33,12 @@
 
 
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Personal Data"
-        android:layout_marginTop="-80dp"
+        android:layout_marginTop="-60dp"
         android:textColor="#FFF"
         android:textAlignment="center"
         android:translationY="-40dp"
@@ -53,24 +54,57 @@
         android:lineSpacingExtra="10sp"
         android:textSize="16sp" />
 
-    <EditText
-        android:id="@+id/etGender"
+    <TextView
+        android:id="@+id/etGenderrr"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
+        android:layout_marginBottom="5dp"
         android:hint="Gender"
         android:inputType="text"
+        android:textSize="18sp"
         android:textColorHint="@android:color/white"
         android:backgroundTint="@android:color/white"
         />
+
+    <LinearLayout
+        android:id="@+id/LinearLayout02"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true">
+
+        <CheckBox
+            android:id="@+id/checkBoxMan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="#FFF"
+            android:padding="7dp"
+            android:buttonTint="#FFF"
+            android:layout_marginRight="20sp"
+            android:layout_marginLeft="90dp"
+            android:text="Man" />
+        <CheckBox
+            android:id="@+id/checkBoxWoman"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="#FFF"
+            android:padding="7dp"
+            android:buttonTint="#FFF"
+            android:layout_marginRight="60sp"
+            android:layout_marginLeft="20dp"
+            android:text="Woman" />
+    </LinearLayout>
 
 
     <EditText
         android:id="@+id/etPersonalName"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:textColorHint="@android:color/white"
@@ -83,6 +117,7 @@
         android:id="@+id/etPersonalSurName"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:textColorHint="@android:color/white"
@@ -96,10 +131,10 @@
         android:id="@+id/etPersonalBD"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
-        android:hint="yyyy.mm.dd"
+        android:hint="yyyy-mm-dd"
         android:inputType="text"
         android:textColorHint="@android:color/white"
         android:backgroundTint="@android:color/white"
@@ -110,7 +145,7 @@
         android:id="@+id/etPersonalPhone"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="25dp"
         android:layout_marginLeft="25dp"
         android:hint="Phone"

@@ -6,5 +6,8 @@ public interface LoginView {
     void loginSuccess();
     void loginError();
 
+    String getAccesstoken();
+    String getMail();
+    String getPassword();
 
 }

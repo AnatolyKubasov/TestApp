@@ -5,4 +5,6 @@ public interface AddrDataView {
     void addrDataValidation();
     void addrDataSuccess();
     void addrDataError();
+
+
 }

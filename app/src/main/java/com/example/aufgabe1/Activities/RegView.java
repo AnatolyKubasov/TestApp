@@ -75,10 +75,9 @@ public class RegView extends AppCompatActivity implements RegisterView, Download
                     mRegisterPresenter.performRegister(userName, password, confirmPassword);
                     //mLoginPresenter.performLogin(userName, password);
                     break;
-                case R.id.btGoToReg:
-                    //mRegisterPresenter.moveToRegisterView();
+                case R.id.btGoToLog:
                     //moveToRegPage();
-
+                    startActivity(new Intent(RegView.this, MainActivity.class));
                     break;
             }
         }
@@ -189,6 +188,8 @@ public class RegView extends AppCompatActivity implements RegisterView, Download
     }
 
 
+
+
     @Override
     public String getRegMail() {
         EditText mail= findViewById(R.id.etrUserName);
@@ -201,14 +202,16 @@ public class RegView extends AppCompatActivity implements RegisterView, Download
         return pw.getText().toString();
     }
 
-    //Später überarbeiten, andere Lsg falls Zeit da ist
+    @Override
+    public String getMail() {
+        return null;
+    }
+
     @Override
     public String getPassword() {
         return null;
     }
 
-
-    //Dont need here
     @Override
     public String getAccesstoken() {
         return null;
@@ -264,9 +267,9 @@ public class RegView extends AppCompatActivity implements RegisterView, Download
         return null;
     }
 
-    @Override
-    public String getMail() {
-        return null;
-    }
+    //Später überarbeiten, andere Lsg falls Zeit da ist
+
+
+
 
 }
